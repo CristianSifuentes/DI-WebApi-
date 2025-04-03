@@ -23,4 +23,22 @@ public class BooksController : ControllerBase {
         return Ok(_bookService.GetAllBooks());
     }
 
+    [HttpGet("{id}")]
+    public IActionResult GetBookById(int id){
+        _loggerService.Log($"GET book with id: {id}");
+        var book = _bookService.GetBookById(id);
+        return book != null ? Ok(book): NotFound();
+    }
+    [HttpPost]
+    public IActionResult AddBook([FromBody] Book book){
+        _bookService.AddBook(book);
+        _loggerService.Log($"Added book: {book.Title}");
+        return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
+    }
+    [HttpDelete("{id}")]
+    public IActionResult DeletedBook(int id){
+        _bookService.DeleteBook(id);
+        _loggerService.Log($"Deleted book with id: {id}");
+        return NoContent();
+    }
 }
