@@ -18,6 +18,4 @@ public class BookService : IBookService {
         var book = GetBookById(id);
         if(book != null) _books.Remove(book);
     }
-
-
 }
