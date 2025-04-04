@@ -20,7 +20,6 @@
     12.1 [Transient](#transient)  
     12.2 [Scoped](#scoped)  
     12.3 [Singleton](#singleton)
-
 ---
 
 ## Introduction
@@ -265,6 +264,7 @@ You can now interact with the API via Swagger UI.
   - Transient: For lightweight, short-lived services.
 - **Avoid the Service Locator Pattern**: Do not inject `IServiceProvider` just to resolve services.
 - **Keep Controllers Thin**: Delegate logic to services, keeping controllers focused on HTTP concerns.
+
 
 ---
 
