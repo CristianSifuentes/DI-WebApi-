@@ -268,5 +268,75 @@ You can now interact with the API via Swagger UI.
 
 ---
 
+## Types of Dependency Injection
+
+ASP.NET Core supports different types of Dependency Injection, each with its own use case:
+
+### Constructor Injection
+This is the most common and recommended form. Dependencies are provided through a class constructor.
+
+```csharp
+public class BooksController : ControllerBase
+{
+    private readonly IBookService _bookService;
+
+    public BooksController(IBookService bookService)
+    {
+        _bookService = bookService;
+    }
+}
+```
+
+### Property Injection
+Dependencies are set via public properties. Useful in scenarios where constructor injection isn't feasible.
+
+```csharp
+public class BooksController : ControllerBase
+{
+    [FromServices]
+    public IBookService BookService { get; set; }
+}
+```
+
+### Method Injection
+Dependencies are passed directly to methods, often through attributes like `[FromServices]`.
+
+```csharp
+[HttpGet]
+public IActionResult GetAllBooks([FromServices] IBookService bookService)
+{
+    return Ok(bookService.GetAllBooks());
+}
+```
+
+---
+
+## Understanding Service Lifetimes
+
+Service lifetimes determine how and when a service is instantiated:
+
+### Transient
+- A new instance is provided every time it's requested.
+- Best for lightweight, stateless services.
+```csharp
+builder.Services.AddTransient<IMyService, MyService>();
+```
+
+### Scoped
+- A single instance is used within a request.
+- Ideal for services that work with scoped resources (e.g., database contexts).
+```csharp
+builder.Services.AddScoped<IMyService, MyService>();
+```
+
+### Singleton
+- A single instance is created and shared across the application lifetime.
+- Great for shared, thread-safe services like logging.
+```csharp
+builder.Services.AddSingleton<IMyService, MyService>();
+```
+
+---
+
 This guide reflects advanced, production-ready practices for DI in ASP.NET Core and is a strong foundation for scalable enterprise-grade APIs.
 
