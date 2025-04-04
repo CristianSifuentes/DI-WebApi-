@@ -12,6 +12,14 @@
 8. [Creating the Controller](#creating-the-controller)
 9. [Running and Testing the Application](#running-and-testing-the-application)
 10. [Best Practices](#best-practices)
+11. [Types of Dependency Injection](#types-of-dependency-injection)  
+    11.1 [Constructor Injection](#constructor-injection)  
+    11.2 [Property Injection](#property-injection)  
+    11.3 [Method Injection](#method-injection)  
+12. [Understanding Service Lifetimes](#understanding-service-lifetimes)  
+    12.1 [Transient](#transient)  
+    12.2 [Scoped](#scoped)  
+    12.3 [Singleton](#singleton)
 
 ---
 
